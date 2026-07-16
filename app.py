@@ -187,9 +187,12 @@ def send_base_prompt(driver):
 
 def is_base_prompt_has_sent(driver):
     try:
+        container = driver.find_element(
+            By.CSS_SELECTOR,
+            ".\\@container\\/main"
+        )
         code_prompt = "CP08062026"
-        body = driver.find_element(By.TAG_NAME, "body")
-        return code_prompt in body.get_attribute("textContent")
+        return code_prompt in container.get_attribute("textContent")
     except Exception:
         return False
 

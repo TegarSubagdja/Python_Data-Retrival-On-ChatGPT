@@ -43,23 +43,26 @@ EXCEL_SHEET_2 = "Sheet1"
 PROMPT_BASE = """
 Tugas CP08062026:
 
-Tarik data dari company knowledge berdasarkan kode produk yang akan saya berikan.
+Tarik data dari company knowledge berdasarkan nama/kode produk THK yang akan saya berikan.
 
 Aturan keluaran WAJIB:
 
-1. Keluaran harus berupa plain text murni.
-2. Jangan gunakan markdown apa pun.
-3. Jangan gunakan code block.
-4. Jangan gunakan format bash.
-5. Jangan gunakan tabel.
-6. Jangan gunakan emoji, ikon, simbol dekoratif, atau karakter khusus.
-7. Hasil harus siap copy-paste langsung ke Excel atau CSV.
-8. Gunakan format dan urutan field persis seperti contoh.
-9. Jangan menambahkan field baru di luar format yang ditentukan.
-10. Jika suatu informasi tidak ditemukan pada company knowledge, isi dengan:
-    Tidak ditemukan
-11. Jika kode produk tidak ditemukan sama sekali, tetap tampilkan seluruh format dan jelaskan pada bagian catatan bahwa data produk tidak ditemukan di company knowledge.
-12. Jangan menambahkan penjelasan, disclaimer, atau kalimat pembuka maupun penutup.
+Keluaran harus berupa plain text murni.
+Jangan gunakan markdown apa pun.
+Jangan gunakan code block.
+Jangan gunakan format bash.
+Jangan gunakan tabel.
+Jangan gunakan emoji, ikon, simbol dekoratif, atau karakter khusus.
+Hasil harus siap copy-paste langsung ke Excel atau CSV.
+Gunakan urutan format persis seperti yang ditentukan.
+Pada bagian "Data teknis", tampilkan hanya field yang relevan dengan kategori produk.
+Gunakan seluruh spesifikasi yang tersedia pada company knowledge selengkap mungkin.
+Jangan menghilangkan spesifikasi penting hanya karena tidak ada pada contoh.
+Untuk produk dengan kategori yang sama, gunakan nama field yang konsisten.
+Jangan membuat spesifikasi yang tidak terdapat pada company knowledge.
+Jika suatu informasi tidak ditemukan, isi dengan "Tidak ditemukan".
+Jika kode produk tidak ditemukan sama sekali, tetap tampilkan seluruh format dan jelaskan pada bagian catatan bahwa data produk tidak ditemukan di company knowledge.
+Jangan menambahkan penjelasan, disclaimer, ataupun kalimat pembuka maupun penutup.
 
 Format keluaran:
 
@@ -67,42 +70,134 @@ Format keluaran:
 
 Deskripsi marketplace:
 
-[deskripsi produk dalam format marketplace]
+[Deskripsi dalam bahasa marketplace yang menjelaskan:
+
+jenis produk,
+fungsi utama,
+prinsip kerja,
+aplikasi penggunaan,
+kompatibilitas dengan komponen lain bila ada,
+keunggulan produk,
+serta hal-hal yang perlu diperiksa customer sebelum membeli.]
 
 Data teknis:
-Brand: [nilai]
-Kode produk: [nilai]
-Kategori: [nilai]
-Seri: [nilai]
-Rasio gear: [nilai]
-Tipe gearhead: [nilai]
-Kompatibilitas referensi: [nilai]
-Aplikasi: [nilai]
-Fungsi: [nilai]
 
-catatan:
+Brand: ...
+Kode produk: ...
+Kategori: ...
+Seri: ...
+Jenis produk: ...
+
+[Lanjutkan dengan spesifikasi teknis yang benar-benar relevan terhadap kategori produk. Gunakan seluruh spesifikasi yang tersedia pada company knowledge. Jangan batasi hanya pada contoh di bawah.]
+
+Aturan pembentukan field teknis:
+
+Nama field harus mengikuti istilah teknis yang digunakan pada company knowledge.
+Untuk kategori produk yang sama, gunakan nama field yang konsisten.
+Jangan menampilkan field yang tidak relevan.
+Jika suatu field memang relevan tetapi nilainya tidak ditemukan, isi "Tidak ditemukan".
+Urutkan field dari informasi umum menuju informasi yang lebih spesifik.
+
+Contoh field yang dapat digunakan (sesuaikan kategori produk):
+
+Dimensi:
+Ukuran nominal
+Diameter
+Diameter poros
+Diameter luar
+Diameter dalam
+Panjang
+Stroke
+Lead
+Pitch
+Lebar
+Tinggi
+Panjang blok
+Lebar blok
+Lebar rel
+Tinggi rakitan
+Panjang rel
+Diameter bola
+
+Konstruksi:
+Jenis nut
+Jenis block
+Jenis rail
+Jenis bearing
+Tipe flange
+Tipe mounting
+Preload
+Accuracy Grade
+Precision Grade
+Clearance
+Seal
+Grease nipple
+Jumlah sirkulasi bola
+Material
+Surface treatment
+Drive system
+Thread direction
+Configuration
+Mounting orientation
+
+Kapasitas:
+Beban dinamis
+Beban statis
+Moment load
+Maximum speed
+Maximum acceleration
+Maximum load
+Maximum thrust
+Rated load
+Torque
+Power
+Voltage
+Current
+Resolution
+Repeatability
+
+Kompatibilitas:
+Rail pasangan
+Nut pasangan
+Bearing pasangan
+Motor kompatibel
+Encoder kompatibel
+Controller kompatibel
+Referensi pengganti
+Kompatibilitas referensi
+
+Informasi aplikasi:
+Aplikasi
+Fungsi
+Keunggulan
+Catatan pemilihan produk
+
+Catatan:
+
 [keterangan tambahan atau "Tidak ada"]
 
-Contoh:
+Pedoman konsistensi kategori:
 
-ORIENTAL 2GN50K
+Untuk LM Guide:
+Gunakan field seperti Ukuran nominal, Tinggi rakitan, Lebar blok, Panjang blok, Lebar rel, Beban dinamis, Beban statis, Rail pasangan, dan field lain yang tersedia.
 
-Deskripsi marketplace:
+Untuk Ball Screw:
+Gunakan field seperti Diameter screw, Lead, Stroke, Jenis nut, Accuracy Grade, Preload, Direction, Beban dinamis, Beban statis, serta spesifikasi lain yang tersedia.
 
-Gearhead Oriental Motor 2GN50K merupakan parallel shaft gearhead seri 2GN dengan rasio reduksi 50:1 untuk motor Oriental Motor tipe GN pinion shaft. Produk ini digunakan untuk aplikasi yang membutuhkan penurunan kecepatan lebih besar dan peningkatan torsi output, seperti conveyor kecil, feeder, rotary mechanism, packaging machine, indexing sederhana, dan kebutuhan replacement gearhead Oriental Motor.
+Untuk Cross Roller Ring:
+Gunakan field seperti Diameter dalam, Diameter luar, Tinggi, Tipe, Seal, Clearance, Akurasi, Beban, dan spesifikasi lain yang tersedia.
 
-Data teknis:
-Brand: Oriental Motor
-Kode produk: 2GN50K
-Kategori: Parallel shaft gearhead / reducer
-Seri: 2GN / GN-K gearhead
-Rasio gear: 50:1
-Tipe gearhead: Parallel Shaft GN-K Gearhead
-Kompatibilitas referensi: motor Oriental Motor 2IK6GN / 2RK6GN pinion shaft type
-Aplikasi: mesin industri ringan, otomasi, conveyor kecil, feeder, rotary mechanism, equipment produksi
-Fungsi: menurunkan speed dan meningkatkan torsi output
+Untuk Linear Actuator:
+Gunakan field seperti Stroke, Maximum Speed, Maximum Load, Motor Type, Drive System, Encoder, Voltage, Repeatability, Mounting, dan spesifikasi lain yang tersedia.
 
-catatan:
-Tidak ada
+Untuk kategori lainnya:
+Bentuk field berdasarkan spesifikasi yang tersedia pada company knowledge dengan tetap menjaga konsistensi penamaan untuk produk dalam kategori yang sama.
+
+Prioritas utama:
+
+Akurasi terhadap company knowledge.
+Kelengkapan spesifikasi.
+Konsistensi nama field pada kategori produk yang sama.
+Jangan memaksakan field dari kategori lain.
 
 """
